@@ -4,7 +4,7 @@ endif
 
 syn cluster christmastreeGlitters contains=christmastreeGlitterSmall,christmastreeGlitterLarge
 syn match christmastreeStar /☆/
-syn region christmastreeLeaves start=/\s\@<=[o.]/ end=/[o.]\%(\s\|\_$\)\@=/ contains=@christmastreeGlitters oneline
+syn region christmastreeLeaves start=/\s\@<=[o.]/ end=/[o.]\%(\s\|\_$\)\@=/ contains=@christmastreeGlitters oneline keepend
 syn match christmastreeGlitterLarge /o/ contained containedin=christmastreeLeaves
 syn match christmastreeGlitterSmall /\*/ contained containedin=christmastreeLeaves
 
