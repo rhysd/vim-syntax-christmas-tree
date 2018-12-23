@@ -4,8 +4,8 @@ endif
 let b:did_ftplugin = 1
 
 function! s:christmas_glitter_tick(timer) abort
-    let small = get(b:, 'christmastree_glitter_small_colors', ['Constant', 'Statement', 'Identifier', 'Ignore'])
-    let large = get(b:, 'christmastree_glitter_large_colors', ['Identifier', 'Keyword', 'Type', 'Normal', 'Statement', 'Constant', 'Ignore'])
+    let small = get(b:, 'christmastree_glitter_small_colors', ['Constant', 'Statement', 'Special', 'Ignore'])
+    let large = get(b:, 'christmastree_glitter_large_colors', ['Special', 'Keyword', 'Identifier', 'Normal', 'Statement', 'Constant', 'Ignore'])
 
     let idx = s:tick % len(small)
     execute 'hi link christmastreeGlitterSmall' small[idx]
@@ -33,17 +33,10 @@ function! s:christmas_glitter_stop() abort
     unlet! s:tick
 endfunction
 
-function! s:christmas_glitter_toggle() abort
-    if !exists('s:timer_id')
-        call s:christmas_glitter_start()
-    else
-        call s:christmas_glitter_stop()
-    endif
-endfunction
-
 if get(g:, 'christmastree_glitter_update', 1)
     call s:christmas_glitter_start()
     autocmd BufWipeout <buffer> call <SID>christmas_glitter_stop()
 endif
 
-command! -nargs=0 -bar -buffer MerryChristmas call <SID>christmas_glitter_toggle()
+command! -nargs=0 -bar -buffer ChristmasTreeTurnOn call <SID>christmas_glitter_start()
+command! -nargs=0 -bar -buffer ChristmasTreeTurnOff call <SID>christmas_glitter_stop()

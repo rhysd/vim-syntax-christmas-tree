@@ -10,10 +10,10 @@ syn match christmastreeGlitterSmall /\*/ contained containedin=christmastreeLeav
 syn match christmastreeFlowerpot /\[_\+\]/
 syn match christmastreeFlowerpot /\\_\+\//
 
-hi def link christmastreeStar Special
+hi def link christmastreeStar Identifier
 hi def link christmastreeLeaves String
 hi def link christmastreeGlitterSmall Constant
-hi def link christmastreeGlitterLarge Identifier
+hi def link christmastreeGlitterLarge Special
 hi def link christmastreeFlowerpot PreProc
 
 let b:current_syntax = "christmastree"
