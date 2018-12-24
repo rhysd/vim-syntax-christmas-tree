@@ -3,24 +3,42 @@ if exists("b:did_ftplugin")
 endif
 let b:did_ftplugin = 1
 
+let s:seed = float2nr(reltimefloat(reltime()))
+function! s:rand() abort
+  let s:seed = s:seed * 214013 + 2531011
+  return (s:seed < 0 ? s:seed - 0x80000000 : s:seed) / 0x10000 % 0x8000
+endfunction
+
+let s:colors = [
+    \   'christmastreeYellow',
+    \   'christmastreeRed',
+    \   'christmastreeOrange',
+    \   'christmastreeGold',
+    \   'christmastreeWhite',
+    \   'christmastreePurple',
+    \   'christmastreeSkyblue',
+    \   'christmastreePink',
+    \   'christmastreeLight',
+    \   'Ignore',
+    \ ]
+
 function! s:christmas_glitter_tick(timer) abort
-    let small = get(b:, 'christmastree_glitter_small_colors', ['Constant', 'Statement', 'Special', 'Ignore'])
-    let large = get(b:, 'christmastree_glitter_large_colors', ['Special', 'Keyword', 'Identifier', 'Normal', 'Statement', 'Constant', 'Ignore'])
+    if !exists('s:timer_id')
+        call timer_stop(a:timer)
+        return
+    endif
 
-    let idx = s:tick % len(small)
-    execute 'hi link christmastreeGlitterSmall' small[idx]
+    let small = s:colors[s:rand() % len(s:colors)]
+    execute 'hi link christmastreeGlitterSmall' small
 
-    let idx = s:tick % len(large)
-    execute 'hi link christmastreeGlitterLarge' large[idx]
-
-    let s:tick += 1
+    let large = s:colors[s:rand() % len(s:colors)]
+    execute 'hi link christmastreeGlitterLarge' large
 endfunction
 
 function! s:christmas_glitter_start() abort
     if exists('s:timer_id')
         return
     endif
-    let s:tick = 1
     let s:timer_id = timer_start(1000, function('s:christmas_glitter_tick'), {'repeat': -1})
 endfunction
 
@@ -30,7 +48,6 @@ function! s:christmas_glitter_stop() abort
     endif
     call timer_stop(s:timer_id)
     unlet! s:timer_id
-    unlet! s:tick
 endfunction
 
 if get(g:, 'christmastree_glitter_update', 1)
