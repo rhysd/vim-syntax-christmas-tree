@@ -13,17 +13,17 @@ syn match christmastreeFlowerpot /\[_\+\]/
 syn match christmastreeFlowerpot /\\_\+\//
 syn match christmastreeSnow /\*/ containedin=NONE
 
-hi def christmastreeYellow term=NONE ctermfg=226
-hi def christmastreeGreen term=NONE ctermfg=47
-hi def christmastreeRed term=NONE ctermfg=196
-hi def christmastreeBrown term=NONE ctermfg=173
-hi def christmastreeGold term=NONE ctermfg=220
-hi def christmastreeWhite term=NONE ctermfg=254
-hi def christmastreePurple term=NONE ctermfg=147
-hi def christmastreeSkyblue term=NONE ctermfg=117
-hi def christmastreePink term=NONE ctermfg=168
-hi def christmastreeLight term=NONE ctermfg=229
-hi def christmastreeOrange term=NONE ctermfg=208
+hi def christmastreeYellow term=NONE ctermfg=226 guifg=yellow
+hi def christmastreeGreen term=NONE ctermfg=47 guifg=lightgreen
+hi def christmastreeRed term=NONE ctermfg=196 guifg=red
+hi def christmastreeBrown term=NONE ctermfg=173 guifg=#bf8040
+hi def christmastreeGold term=NONE ctermfg=220 guifg=gold
+hi def christmastreeWhite term=NONE ctermfg=254 guifg=white
+hi def christmastreePurple term=NONE ctermfg=147 guifg=purple
+hi def christmastreeSkyblue term=NONE ctermfg=117 guifg=skyblue
+hi def christmastreePink term=NONE ctermfg=168 guifg=pink
+hi def christmastreeLight term=NONE ctermfg=229 guifg=lightyellow
+hi def christmastreeOrange term=NONE ctermfg=208 guifg=orange
 
 hi def link christmastreeStar christmastreeYellow
 hi def link christmastreeLeaves christmastreeGreen
