@@ -51,8 +51,11 @@ function! s:christmas_glitter_stop() abort
 endfunction
 
 if get(g:, 'christmastree_glitter_update', 1)
-    call s:christmas_glitter_start()
-    autocmd BufWipeout <buffer> call <SID>christmas_glitter_stop()
+    augroup ChristmasTreeTimer
+        autocmd!
+        autocmd BufWinEnter <buffer> call <SID>christmas_glitter_start()
+        autocmd BufWinLeave <buffer> call <SID>christmas_glitter_stop()
+    augroup END
 endif
 
 command! -nargs=0 -bar -buffer ChristmasTreeTurnOn call <SID>christmas_glitter_start()
